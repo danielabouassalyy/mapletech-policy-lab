@@ -1,0 +1,54 @@
+{
+  "properties": {
+    "displayName": "Only-CanadaCentral",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "Deny deployments outside Canada Central",
+    "metadata": {
+      "category": "Governance",
+      "createdBy": "aa8b6736-ee7d-45b0-9403-5f7dceee6569",
+      "createdOn": "2025-08-03T15:03:10.1487362Z",
+      "updatedBy": null,
+      "updatedOn": null
+    },
+    "version": "1.0.0",
+    "parameters": {
+      "allowedLocations": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Allowed locations",
+          "description": "The list of locations that resources are allowed to deploy into",
+          "strongType": "location"
+        },
+        "defaultValue": [
+          "canadacentral"
+        ]
+      }
+    },
+    "policyRule": {
+      "if": {
+        "not": {
+          "field": "location",
+          "in": "[parameters('allowedLocations')]"
+        }
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "versions": [
+      "1.0.0"
+    ]
+  },
+  "id": "/subscriptions/805ef5cd-dba2-4928-a666-50cf5f429a0d/providers/Microsoft.Authorization/policyDefinitions/25acb0b0-8b1a-47e1-9fc4-04d85f254a75",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "25acb0b0-8b1a-47e1-9fc4-04d85f254a75",
+  "systemData": {
+    "createdBy": "abou0344@algonquinlive.com",
+    "createdByType": "User",
+    "createdAt": "2025-08-03T15:03:10.1241758Z",
+    "lastModifiedBy": "abou0344@algonquinlive.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2025-08-03T15:03:10.1241758Z"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "properties": {
+    "displayName": "Require-ProjectName-Tag",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "Deny any resource creation that doesn’t include a “ProjectName” tag",
+    "metadata": {
+      "category": "Governance",
+      "createdBy": "aa8b6736-ee7d-45b0-9403-5f7dceee6569",
+      "createdOn": "2025-08-03T15:07:48.1838517Z",
+      "updatedBy": "aa8b6736-ee7d-45b0-9403-5f7dceee6569",
+      "updatedOn": "2025-08-03T15:29:23.3930746Z"
+    },
+    "version": "1.0.0",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "notEquals": "Microsoft.Authorization/policyAssignments"
+          },
+          {
+            "field": "type",
+            "notEquals": "Microsoft.Authorization/policySetAssignments"
+          },
+          {
+            "not": {
+              "field": "tags['ProjectName']",
+              "exists": "true"
+            }
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "versions": [
+      "1.0.0"
+    ]
+  },
+  "id": "/subscriptions/805ef5cd-dba2-4928-a666-50cf5f429a0d/providers/Microsoft.Authorization/policyDefinitions/0451e213-f47b-440c-87f4-59861b8be4db",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "0451e213-f47b-440c-87f4-59861b8be4db",
+  "systemData": {
+    "createdBy": "abou0344@algonquinlive.com",
+    "createdByType": "User",
+    "createdAt": "2025-08-03T15:07:48.1548199Z",
+    "lastModifiedBy": "abou0344@algonquinlive.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2025-08-03T15:29:23.3744233Z"
+  }
+}
