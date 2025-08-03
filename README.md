@@ -1,1 +1,27 @@
+# Policy Definitions and Notes
 - We started by defining three custom Azure Policies: one that only allows deployments in Canada Central, one that requires every resource to have a ProjectName tag, and one that blocks any Public IP address from being created. Next we grouped those policies into a single Policy Initiative called MapleTech Secure Foundation so they could be managed and assigned together as a coherent set of guardrails. Finally we assigned that initiative to our test resource group in Enforce mode, which activated all three policies at once and automatically denied any non-compliant deployments.
+## 1. Only-CanadaCentral
+`Denies any resource deployed outside Canada Central`
+```json
+"mode": "All",
+"parameters": {
+  "allowedLocations": {
+    "type": "Array",
+    "defaultValue": [
+      "canadacentral"
+    ]
+  }
+},
+"policyRule": {
+  "if": {
+    "not": {
+      "field": "location",
+      "in": "[parameters('allowedLocations')]"
+    }
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
+
+```
